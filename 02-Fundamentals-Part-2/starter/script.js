@@ -264,7 +264,6 @@ console.log(jonas);
 // "Jonas has 3 friends, and his best friend is called Michael"
 
 console.log(`${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`);
-*/
 
 const jonas = {
     firstName: 'Jonas',
@@ -273,11 +272,11 @@ const jonas = {
     job: 'teacher',
     friends: ['Michael', 'Peter', 'Steven'],
     hasDriversLicense: true,
-
+    
     //calcAge: function (birthYear) {
     // .   return 2037 - birthYear;
     // }
-
+    
     // calcAge: function () {
     //    console.log(this);
     //    return 2037 - this.birthYear;
@@ -331,8 +330,130 @@ mark.calcBMI();
 john.calcBMI();
 
 if (mark.bmi > john.bmi) {
-    console.log(`${mark.fullName}'s BMI (${mark.bmi}) is heigher than ${john.fullName}'s (${john.bmi})!`);
-}
+    console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s (${john.bmi})!`)
+} 
 else if (john.bmi > mark.bmi) {
-    console.log(`${john.fullName}'s BMI (${john.bmi}) is heigher than ${mark.fullName}'s (${mark.bmi})!`);
+    console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s (${mark.bmi})!`)
 }
+console.log('Lifting weights repetition 1 🏋️‍♀️');
+console.log('Lifting weights repetition 2 🏋️‍♀️');
+console.log('Lifting weights repetition 3 🏋️‍♀️');
+console.log('Lifting weights repetition 4 🏋️‍♀️');
+console.log('Lifting weights repetition 5 🏋️‍♀️');
+console.log('Lifting weights repetition 6 🏋️‍♀️');
+console.log('Lifting weights repetition 7 🏋️‍♀️');
+console.log('Lifting weights repetition 8 🏋️‍♀️');
+console.log('Lifting weights repetition 9 🏋️‍♀️');
+console.log('Lifting weights repetition 10 🏋️‍♀️');
+
+for (let rep = 1; rep <= 10; rep++) {
+    console.log(`Lifting weights repetition ${rep} 🏋️‍♀️`);
+}
+
+const jonasArray = [
+    'Jonas',
+    'Schmedtmann',
+    2037 - 1991,
+    'teacher',
+    ['Michael', 'Peter', 'Steven'],
+    true
+];
+const types = [];
+for (let i = 0; i < jonasArray.length; i++) {
+    // Reading from jonasArray
+    console.log(jonasArray[i], typeof jonasArray[i]);
+    
+    // Filling types array
+    // types[i] = typeof jonasArray[i];
+    types.push(typeof jonasArray[i]);
+}
+
+console.log(types);
+
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+
+for( let i = 0; i < years.length; i++) {
+    ages.push(2037 - years[i]);
+}
+console.log(ages);
+
+// continue and break
+console.log('--- ONLY STRINGS ---');
+for (let i = 0; i < jonasArray.length; i++) {
+    if(typeof jonasArray[i] !== 'string') continue;
+    console.log(jonasArray[i], typeof jonasArray[i]);
+}
+
+console.log('--- BREAK WITH NUMBER ---');
+for (let i = 0; i < jonasArray.length; i++) {
+    if(typeof jonasArray[i] === 'number') break;
+    console.log(jonasArray[i], typeof jonasArray[i]);
+}
+
+const jonas = [
+    'Jonas',
+    'Schmedtmann',
+    2037 - 1991,
+    'teacher',
+    ['Michael', 'Peter', 'Steven'],
+    true
+];
+
+for(let i = jonas.length - 1; i >= 0; i--) {
+    console.log(i, jonas[i]);
+}
+
+for (let exercise = 1; exercise < 4; exercise++) {
+    console.log(`--------- Starting exercise ${exercise}`);
+    
+    for (let rep = 1; rep < 6; rep++) {
+        console.log(`Exercise ${exercise}: Lifting weight repetition ${rep} 🏋️‍♀️`)
+    }
+}
+
+for (let rep = 1; rep <= 10; rep++) {
+    console.log(`Lifting weights repetition ${rep} 🏋️‍♀️`);
+}
+
+let rep = 1;
+while (rep <= 10) {
+    console.log(`WHILE: Lifting weights repetition ${rep} 🏋️‍♀️`);
+    rep++;
+}
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+console.log(dice);
+
+while (dice !== 6) {
+    console.log(`You rolled a ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+    if (dice === 6) console.log('Loop is about to end...');
+}
+*/
+
+// Challenge 4
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+
+function calcTip (bill) {
+    return bill >= 50 && bill <= 300 ? bill * .15 : bill *.2;
+}
+
+function calcAverage (arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        sum = arr[i] + sum;
+    }
+    let avg = sum / arr.length;
+    return avg;
+}
+
+for (let i = 0; i < bills.length; i++) {
+    tips[i] = calcTip(bills[i]);
+    totals[i] = tips[i] + bills[i];
+}
+let average = calcAverage(totals);
+
