@@ -22,7 +22,7 @@ const renderCountry = function (data, className = '') {
   </div>
 </article>`;
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 const getCountryAndNeighbor = function (country) {
@@ -352,7 +352,6 @@ PART 2
 TEST DATA: Images in the img folder. Test the error handler by passing a wrong image path. Set the network speed to 'Fast 3G' in the dev tools Network tab, otherwise images load too fast.
 
 GOOD LUCK 😀
-*/
 const wait = function (seconds) {
   return new Promise(function (resolve) {
     setTimeout(resolve, seconds * 1000);
@@ -368,7 +367,7 @@ const createImage = function (imgPath) {
       imgContainer.append(img);
       resolve(img);
     });
-
+    
     img.addEventListener('error', function () {
       reject(new Error('Image not found'));
     });
@@ -378,17 +377,46 @@ const createImage = function (imgPath) {
 let currentImg;
 
 createImage('img/img-1.jpg')
-  .then(img => {
-    currentImg = img;
-    return wait(2);
-  })
-  .then(() => {
-    currentImg.style.display = 'none';
-    return createImage('img/img-2.jpg');
-  })
-  .then(img => {
-    currentImg = img;
-    return wait(2);
-  })
-  .then(() => (currentImg.style.display = 'none'))
-  .catch(err => console.log(err));
+.then(img => {
+  currentImg = img;
+  return wait(2);
+})
+.then(() => {
+  currentImg.style.display = 'none';
+  return createImage('img/img-2.jpg');
+})
+.then(img => {
+  currentImg = img;
+  return wait(2);
+})
+.then(() => (currentImg.style.display = 'none'))
+.catch(err => console.log(err));
+*/
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+const whereAmI = async function () {
+  // Geolocation
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
+
+  // Reverse geocoding
+  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
+
+  // fetch(`https://countries-api-836d.onrender.com/countries/name/${country}`).then(res => console.log(res));
+
+  const res = await fetch(
+    `https://countries-api-836d.onrender.com/countries/name/${dataGeo.country}`
+  );
+  const data = await res.json();
+  console.log(data);
+  renderCountry(data[0]);
+};
+whereAmI();
+console.log('FIRST');
