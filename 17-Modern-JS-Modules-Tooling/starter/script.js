@@ -12,14 +12,14 @@ console.log('Importing module');
 // console.log(ShoppingCart.totalPrice);
 
 // import add, { addToCart, totalPrice, tq }from './shoppingCart.js';
-
+*/
 import add, { cart } from './shoppingCart.js';
 add('pizza', 2);
 add('bread', 5);
 add('apples', 4);
 
 console.log(cart);
-
+/*
 // Top-level await. You can use await without having to use an async function
 // But it is blocking and won't let anything else run until its finished
 // const res = await fetch('https://jsonplaceholder.typicode.com/posts');
@@ -55,8 +55,10 @@ const state = {
 };
 
 const stateClone = Object.assign({}, state);
-console.log(stateClone);
+const stateDeepClone = cloneDeep(state);
+
 state.user.loggedIn = false;
 console.log(stateClone);
 
-const stateDeepClone = cloneDeep(state);
+console.log(stateDeepClone);
+
